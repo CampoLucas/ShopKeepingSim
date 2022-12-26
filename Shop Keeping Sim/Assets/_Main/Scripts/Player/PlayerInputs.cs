@@ -10,6 +10,7 @@ public class PlayerInputs : MonoBehaviour
     private bool _canUseInputs = true;
     
     public Action<Vector2, float> OnMovement;
+    public Action OnMovementCancelled;
     public Action OnInteraction;
     [field: SerializeField] public Vector2 MoveDir { get; private set; }
     [field: SerializeField] public float MoveAmount { get; private set; }
@@ -48,6 +49,7 @@ public class PlayerInputs : MonoBehaviour
     {
         if (!_canUseInputs) return;
         MoveDir = Vector2.zero;
+        OnMovementCancelled?.Invoke();
     }
 
     private void Interact(InputAction.CallbackContext context)

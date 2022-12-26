@@ -6,10 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private PlayerInputs _inputs;
+    private Movement _move;
 
     private void Awake()
     {
         _inputs = GetComponent<PlayerInputs>();
+        _move = GetComponent<Movement>();
     }
 
     private void Start()
@@ -23,7 +25,7 @@ public class Player : MonoBehaviour
 
     private void Move(Vector2 dir, float amount)
     {
-        //Move method from the move script uses vector 2 parameter
+        if (_move) _move.Move(dir);
         //Move method from animation script uses float parameter
     }
 

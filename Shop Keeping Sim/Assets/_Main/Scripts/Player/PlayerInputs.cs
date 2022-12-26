@@ -11,15 +11,16 @@ public class PlayerInputs : MonoBehaviour
     
     public Action<Vector2, float> OnMovement;
     public Action OnInteraction;
-    public Vector2 MoveDir { get; private set; }
-    public float MoveAmount { get; private set; }
-
+    [field: SerializeField] public Vector2 MoveDir { get; private set; }
+    [field: SerializeField] public float MoveAmount { get; private set; }
+    
     private void OnEnable()
     {
         if (_inputActions == null)
         {
             _inputActions = new PlayerControls();
             _inputActions.Player.Movement.performed += Movement;
+            _inputActions.Player.Movement.canceled += MovementCancelled;
             _inputActions.Player.Interact.performed += Interact;
         }
         _inputActions.Enable();
@@ -32,18 +33,34 @@ public class PlayerInputs : MonoBehaviour
         _inputActions.Disable();
     }
 
+    private void Update()
+    {
+        MovementInput();
+    }
+
     private void Movement(InputAction.CallbackContext context)
     {
         if (!_canUseInputs) return;
         MoveDir = context.ReadValue<Vector2>();
-        MoveAmount = Mathf.Clamp01(Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y));
-        OnMovement?.Invoke(MoveDir, MoveAmount);
+    }
+
+    private void MovementCancelled(InputAction.CallbackContext context)
+    {
+        if (!_canUseInputs) return;
+        MoveDir = Vector2.zero;
     }
 
     private void Interact(InputAction.CallbackContext context)
     {
         if (!_canUseInputs) return;
         OnInteraction?.Invoke();
+    }
+
+    private void MovementInput()
+    {
+        MoveAmount = Mathf.Clamp01(Mathf.Abs(MoveDir.x) + Mathf.Abs(MoveDir.y));
+        if (MoveAmount <= 0) return;
+        OnMovement?.Invoke(MoveDir, MoveAmount);
     }
 
     public void EnableInputs(bool canUseInputs) => _canUseInputs = canUseInputs;

@@ -38,9 +38,10 @@ public class Player : MonoBehaviour
         if (_move) _move.Move(dir);
     }
     
-
     private void Interact()
     {
         
     }
+
+    private void EnableInputs(bool canUseInputs) => _inputs.EnableInputs(canUseInputs);
 }

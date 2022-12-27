@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public struct InventoryItem
@@ -23,17 +24,26 @@ public class Inventory : MonoBehaviour
 {
     private Dictionary<string, InventoryItem> _itemDictionary;
     //private List<InventoryItem> _itemsStoredUp;
-    public static Inventory Instance;
+    public static Inventory Inst = null;
+    private static readonly object Padlock = new object();
+
+    private Inventory()
+    {
+        
+    }
+
+    public static Inventory Instance { get { lock (Padlock) return Inst; } }
     
     private void Awake()
     {
-        if(Instance == null)
+        lock (Padlock)
         {
-            Destroy(gameObject);
-            return;
+            if (Inst == null) Inst = this;
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-
-        Instance = this;
 
         _itemDictionary = new Dictionary<string, InventoryItem>();
     }

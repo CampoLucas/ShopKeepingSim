@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,11 @@ public class InventoryUI : BaseComponent
     [SerializeField] private ItemUI itemPrefab;
     [SerializeField] private Transform content;
     private Dictionary<string, ItemUI> _itemDictionary;
+
+    private void Awake()
+    {
+        _itemDictionary ??= new Dictionary<string, ItemUI>();
+    }
 
     public void AddItem(ItemSO data, int stock)
     {
@@ -22,6 +28,7 @@ public class InventoryUI : BaseComponent
         //     _itemDictionary[data.ID] = item;
         // }
         
+        _itemDictionary ??= new Dictionary<string, ItemUI>();
         if (!_itemDictionary.TryGetValue(data.ID, out var item))
         {
             item = Instantiate(itemPrefab, content);

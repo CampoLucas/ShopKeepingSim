@@ -13,6 +13,12 @@ public struct InventoryItem
         Item = item;
         Stock = 1;
     }
+    
+    public InventoryItem(ItemSO item, int stock)
+    {
+        Item = item;
+        Stock = stock;
+    }
 
     public int IncreaseStock() => Stock ++;
     public int IncreaseStock(int amount) => Stock += amount;
@@ -48,9 +54,9 @@ public class Inventory : MonoBehaviour
         _itemDictionary = new Dictionary<string, InventoryItem>();
     }
 
-    public void GetItem(IStorable storableItem)
+    public void GetItem(ItemSO data)
     {
-        var data = storableItem.Data;
+        //var data = interactableItem.Data;
         if (_itemDictionary.TryGetValue(data.ID, out var stockItem))
         {
             stockItem.IncreaseStock();
@@ -63,16 +69,32 @@ public class Inventory : MonoBehaviour
         
         //adds it to the ui
         var newStockItem = _itemDictionary[data.ID];
-        //UIManager.Instance.SetItemButton(newStockItem.Item, newStockItem.Stock);
+        UIManager.Instance.AddItem(newStockItem.Item, newStockItem.Stock);
     }
 
-    public bool HasItem(IStorable itemToCheck) => _itemDictionary.ContainsKey(itemToCheck.Data.ID);
+    public void AddItem(ItemSO item, int amount)
+    {
+        if (_itemDictionary.TryGetValue(item.ID, out var stockItem))
+        {
+            stockItem.IncreaseStock(amount);
+            _itemDictionary[item.ID] = stockItem;
+        }
+        else
+        {
+            _itemDictionary.Add(item.ID, new InventoryItem(item, amount));
+        }
+        
+        var newStockItem = _itemDictionary[item.ID];
+        UIManager.Instance.AddItem(newStockItem.Item, newStockItem.Stock);
+    }
+
+    public bool HasItem(ItemSO data) => _itemDictionary.ContainsKey(data.ID);
     public bool HasItem(string id) => _itemDictionary.ContainsKey(id);
 
-    public int GetItemStock(IStorable item) =>
-        _itemDictionary.TryGetValue(item.Data.ID, out var stock) ? stock.Stock : 0;
+    public int GetItemStock(ItemSO data) =>
+        _itemDictionary.TryGetValue(data.ID, out var stock) ? stock.Stock : 0;
 
-    public bool HasItems(List<IStorable> itemsToCheck)
+    public bool HasItems(List<IInteractable> itemsToCheck)
     {
         foreach (var itemToCheck in itemsToCheck)
         {

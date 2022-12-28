@@ -9,8 +9,6 @@ public class ItemUI : MonoBehaviour
 {
     private TMP_Text _text;
     [SerializeField] private Image icon;
-    [field: SerializeField] public ItemSO Data { get; private set; }
-    [field: SerializeField] public int Stock { get; private set; }
 
     private void Awake()
     {
@@ -19,15 +17,19 @@ public class ItemUI : MonoBehaviour
 
     private void Start()
     {
-        if (!Data) return;
-        Init(Data, 1);
+        
     }
 
     public void Init(ItemSO data, int stock)
     {
-        Data = data;
-        Stock = stock;
-        _text.text = $"<align=left>{Data.Name}<line-height=0><br><align=right>{Stock:D2}<line-height=1em>";
-        icon.sprite = Data.Icon;
+        if (!_text) Awake();
+        
+        SetItemText(ref _text, data.name, stock);
+        icon.sprite = data.Icon;
+    }
+
+    private void SetItemText(ref TMP_Text text, in string itemName, in int stock)
+    {
+        text.text = $"<align=left>{itemName}<line-height=0><br><align=right>{stock:D2}<line-height=1em>";
     }
 }

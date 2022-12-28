@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleDetection : MonoBehaviour
+public class CircleDetection : MonoBehaviour
 {
     private Vector2 _dir;
     [SerializeField] private float distance = 0.1f;
@@ -10,10 +10,11 @@ public class ObstacleDetection : MonoBehaviour
 
     [SerializeField] private LayerMask _collisionLayer;
     
-    public bool Detect(Vector2 direction)
+    public bool Detect(Vector2 direction, out RaycastHit2D hit)
     {
         _dir = direction;
-        return Physics2D.CircleCast(transform.position, radius, direction, distance, _collisionLayer);
+        hit = Physics2D.CircleCast(transform.position, radius, direction, distance, _collisionLayer);
+        return hit;
     }
     
     private void OnDrawGizmos()

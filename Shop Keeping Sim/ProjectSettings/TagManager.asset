@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -12,7 +13,7 @@ TagManager:
   - Water
   - UI
   - Obstacle
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -38,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2658605733
+    locked: 0
+  - name: Walls
+    uniqueID: 257908185
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: WallBorder
+    uniqueID: 748506169
     locked: 0

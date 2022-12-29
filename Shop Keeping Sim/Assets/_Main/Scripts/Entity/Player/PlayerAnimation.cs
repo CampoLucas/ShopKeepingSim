@@ -19,6 +19,4 @@ public class PlayerAnimation : MonoBehaviour
         _anim.SetFloat(Vertical, dir.y, .1f, Time.deltaTime);
         _anim.SetFloat(Horizontal, dir.x, .1f, Time.deltaTime);
     }
-
-    public void IdleAnimation() => MovementAnimation(Vector2.zero);
 }

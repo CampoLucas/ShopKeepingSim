@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84f780785d23a64f969690d48dd16ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: d3aafd4862a7aed4aa23b2f8d7b11d09, type: 2}
 --- !u!4 &121419988
 Transform:
   m_ObjectHideFlags: 0
@@ -439,7 +440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe89150c2784b62418c4084cf5e93687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
 --- !u!95 &121419992
 Animator:
   serializedVersion: 4
@@ -496,8 +496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fddc61d6a0d52d4cbf9c8aa053bef22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
-  defaultOutfit: {fileID: 2800000, guid: 23748c298f885bf4c89671f6d30f562b, type: 3}
 --- !u!58 &121419999
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -526,9 +524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ac7196879cf5442a378307f153f7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!224 &287128829 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1036901721502724724, guid: 53f44c154aac4854293046c5c6c53e4a, type: 3}
@@ -2708,7 +2703,6 @@ GameObject:
   - component: {fileID: 2029946552}
   - component: {fileID: 2029946551}
   - component: {fileID: 2029946549}
-  - component: {fileID: 2029946548}
   - component: {fileID: 2029946547}
   - component: {fileID: 2029946546}
   - component: {fileID: 2029946544}
@@ -2733,8 +2727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fddc61d6a0d52d4cbf9c8aa053bef22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
-  defaultOutfit: {fileID: 2800000, guid: 23748c298f885bf4c89671f6d30f562b, type: 3}
 --- !u!95 &2029946546
 Animator:
   serializedVersion: 4
@@ -2767,23 +2759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 021d6e55eaa538142959283a8cbd18e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2029946548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029946543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df52fe9a3b186b343ab3116164537af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0.3
-  radius: 0.2
-  _collisionLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &2029946549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2796,7 +2771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe89150c2784b62418c4084cf5e93687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
 --- !u!114 &2029946551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2809,6 +2783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84f780785d23a64f969690d48dd16ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: b3385fc4cbb9acd4996a6c2cb98ee0aa, type: 2}
 --- !u!50 &2029946552
 Rigidbody2D:
   serializedVersion: 4
@@ -2881,7 +2856,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2029946543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e7bd1a8caa13e846b46114f43967c53, type: 3}
+  m_Script: {fileID: 11500000, guid: 047f4c49baab1d64b9573aa1706f7f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: dd1a95d19d5a26b4f96414937247a5c9, type: 2}

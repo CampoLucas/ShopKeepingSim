@@ -7,22 +7,18 @@ using Random = UnityEngine.Random;
 public class Interactable : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public ItemSO Data { get; private set; }
-    public bool CanInteract { get; private set; }
+    public bool CanInteract { get; protected set; }
 
     private void Awake()
     {
         CanInteract = true;
     }
 
-    public virtual void OnInteract()
+    public virtual void Interacted()
     {
-        if (!CanInteract) return;
-        AddMoney(Random.Range(15, 100));
-        CanInteract = false;
+        
+        
     }
 
-    private void AddMoney(int amount)
-    {
-        Inventory.Instance.AddItem(Data, amount);
-    }
+    
 }
